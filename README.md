@@ -5,7 +5,7 @@ Kodbas för koden och resultatet som använts i medieanalysen av Dagens Nyheters
 ## Resultat
 Tre Excel-dokument har inkluderats som visar våra resultat:
  - [`DN_medieanalys_alla_meningar_dodsfall.xlsx`](DN_medieanalys_alla_meningar_dodsfall.xlsx): Inkluderar alla meningar där palestinska och israeliska dödsfall nämns.
- - [`DN_medieanalys_alla_meningar_ordanalys.xlsx`](DN_medieanalys_alla_meningar_ordanalys.xlsx): Inkluderar alla meningar med känsloladdade ord för att beskriva palestinska och israeliska dödsfall, samt andra relevanta ord.
+ - [`DN_medieanalys_alla_meningar_ordanalys.xlsx`](DN_medieanalys_alla_meningar_ordanalys.xlsx): Inkluderar alla meningar med känsloladdade ord för att beskriva palestinska och israeliska dödsfall, olika termer för tillfångatagande, samt antisemitism och islamofobi.
  - [`DN_medieanalys_resultat_sammanfattning.xlsx`](DN_medieanalys_resultat_sammanfattning.xlsx): Inkluderar en sammanfattning av alla resultat.
 
 ## Rådata
@@ -44,12 +44,12 @@ För att få en djupare uppfattning om hur olika relevanta ord användes i relat
 1. Steg 1 ovan. 
 2. Vi sammanställde alla meningar som innehöll följande ord och ordderivat genom att använda en "RegEx"-sökning implementerad i Python-kod:
     ```
-    words = ['mörda\w{0,3}', 'mord\w{0,3}', 'massak\w{0,8}', 'massmord\w{0,3}', 'slakt\w{0,5}','blodig\w{0,4}', 'brutal\w{0,6}', 'antisemit\w{0,5}', 'judehat\w{0,4}', 'islamofob\w{0,4}', 'muslimhat\w{0,4}', 'gisslan\w{0,14}', 'kidnapp\w{0,14}', '\w{0,4}fånga\w{0,7}'
+    words = ['mörda\w{0,3}', 'mord\w{0,3}', 'massak\w{0,8}', 'massmord\w{0,3}', 'slakt\w{0,5}','blodig\w{0,4}', 'brutal\w{0,6}', 'antisemit\w{0,5}', 'judehat\w{0,4}', 'islamofob\w{0,4}', 'muslimhat\w{0,4}', 'gisslan\w{0,14}', 'kidnapp\w{0,14}', '\w{0,4}fånga\w{0,7}', 'frihetsberöv\w{0,5}', 'förvar', 'interner\w{0,4}']
     ```
 3. Efter att dessa meningar samlats ihop (totalt 609 stycken) gick vi igenom dem manuellt och taggade dem baserat på om orden refererade till israeliska eller palestinska dödsfall, gisslan, eller om det handlade om antisemitism eller islamofobi. Om fler än ett relevant ord identifieras i samma mening står flera identiska meningar efter varandra, men orden som analyseras är olika. Den här processen involverade även att sålla bort meningar som av olika anledningar var irrelevanta. Fem regler formulerades för att gallra ut irrelevanta meningar och ord: 
-   - De känsloladdade orden måste referera till israeliska eller palestinska dödsfall som skett i Israel eller Palestina (Gaza eller Västbanken) 
-   - De känsloladdade orden måste beröra specifika händelser mellan den 7:e oktober – 7:e november som redan har skett (spekulationer räknas inte)
-   - Orden antisemitism och islamofobi inkluderas oavsett var i världen händelserna refererar till 
+   - De känsloladdade orden/termerna för frihetsberövande måste referera till israeliska eller palestinska dödsfall/bortföranden som skett i Israel eller Palestina (Gaza eller Västbanken)
+   - De känsloladdade orden och termerna för frihetsberövande måste beröra specifika händelser mellan den 7:e oktober – 7:e november som redan har skett (spekulationer räknas inte)
+   - Orden antisemitism och islamofobi inkluderas oavsett var i världen händelserna refererar till och de behöver inte beröra specifika händelser mellan den 7:e oktober – 7:e november (antisemitism eller islamofobi som diskuteras i generella termer inkluderas) 
    - Ord eller meningar som står inom citattecken exkluderas
    - Textboxar och annan typ av grafik exkluderas
 4. Ordfrekvensen lades sedan ihop i en tabell och jämfördes med varandra.
